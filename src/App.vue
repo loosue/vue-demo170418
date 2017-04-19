@@ -1,18 +1,31 @@
 <template>
   <div id="app">
-    <hello></hello>
+    <ul>
+      <li><router-link to = '/foo'>Go to Foo</router-link></li>
+      <li><router-link to = '/bar'>Go to Bar</router-link></li>
+    </ul>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
 import Hello from './components/Hello'
 
-export default {
-  name: 'app',
-  components: {
-    Hello
-  }
-}
+const Foo = {template:'<div>this si Foo</div>'}
+const Bar = {template:'<div>this si Bar</div>'}
+
+const routes = [
+  {path:'/foo',component: Foo},
+  {path:'/bar',component: Bar}
+]
+
+const router = new VueRouter({
+  routes: routes
+});
+
+const app = new Vue({
+ router
+}).$mount('#app')
 </script>
 
 <style>
